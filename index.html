@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h2>💓 Heart Disease Prediction</h2>
+        <form action="/predict" method="POST">
+
+            <label>Age:</label>
+            <input type="text" name="age" required>
+
+            <label>Sex:</label>
+            <select name="sex" required>
+                <option value="">--Select--</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label>Chest Pain Type (0-3):</label>
+            <input type="text" name="cp" required>
+
+            <label>Resting Blood Pressure:</label>
+            <input type="text" name="trestbps" required>
+
+            <label>Cholesterol:</label>
+            <input type="text" name="chol" required>
+
+            <label>Fasting Blood Sugar > 120 mg/dl:</label>
+            <select name="fbs" required>
+                <option value="">--Select--</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label>Resting ECG Results:</label>
+            <select name="restecg" required>
+                <option value="">--Select--</option>
+                <option value="Normal">Normal</option>
+                <option value="ST-T Wave Abnormality">ST-T Wave Abnormality</option>
+                <option value="Left Ventricular Hypertrophy">Left Ventricular Hypertrophy</option>
+            </select>
+
+            <label>Max Heart Rate:</label>
+            <input type="text" name="thalach" required>
+
+            <label>Exercise Induced Angina:</label>
+            <select name="exang" required>
+                <option value="">--Select--</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label>ST Depression (Oldpeak):</label>
+            <input type="text" name="oldpeak" pattern="^\d+(\.\d+)?$" title="Use dot as decimal separator, e.g. 1.25" required>
+
+            <label>Slope of ST Segment:</label>
+            <select name="slope" required>
+                <option value="">--Select--</option>
+                <option value="Upsloping">Upsloping</option>
+                <option value="Flat">Flat</option>
+                <option value="Downsloping">Downsloping</option>
+            </select>
+
+            <label>Number of Major Vessels (0-3):</label>
+            <input type="text" name="ca" required>
+
+            <label>Thal:</label>
+            <select name="thal" required>
+                <option value="">--Select--</option>
+                <option value="Normal">Normal</option>
+                <option value="Fixed Defect">Fixed Defect</option>
+                <option value="Reversible Defect">Reversible Defect</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="prediction-text">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
